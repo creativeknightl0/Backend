@@ -25,6 +25,12 @@ app.get('/r/:subreddit', (req, res) => {
     res.render('subreddit', {subreddit});
 })
 
+app.get('/favTVShows', (req, res) => {
+    const favCurr = ['Brave New World', 'Disclaimer', 'Skins'];
+    const favCurrPosters = ['https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse4.explicit.bing.net%2Fth%2Fid%2FOIP.CjfmQBh7aeobvBSLuy4OPQHaEK%3Fpid%3DApi&sp=1782811412T33440ccb8f36358457415eb95faa35dc5a8a4ee72c11054d9476b134e50cf3c2', 'https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fcdn.mos.cms.futurecdn.net%2F7Ppo3MmxNAguxi7TWXaXMS.jpg&sp=1782811450T6fb47732a758567e68d5474c49c14b17e0b4438744a6ac08675ee1be15262fb4', 'https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fimages-na.ssl-images-amazon.com%2Fimages%2FI%2F71KJWkgFzcL._RI_.jpg&sp=1782811488T75aed4f358c19e0402969c7159546e5443923397cf4f8ef95a29ed339354cf69'];
+    res.render('favouriteShows', {favCurr, favCurrPosters});
+});
+
 app.listen(3000, () => {
     console.log('Listening on port 3000');
 })

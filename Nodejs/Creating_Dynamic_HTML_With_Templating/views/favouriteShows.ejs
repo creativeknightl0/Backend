@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <p><%= favCurr %></p> -->
+    <p>My current favourite tv shows list:-</p>
+    <ul>
+        <% for(const shows of favCurr) { %>
+            <li><%= shows %></li>
+        <% } %>
+        <% for(const showPosters of favCurrPosters) { %>
+            <img src='<%= showPosters %>' alt="Posters" style="width: 500px; height: 300px;" />
+        <% } %>
+    </ul>
+</body>
+</html>

@@ -7,5 +7,11 @@
 </head>
 <body>
     <h1>Your random number: <%= rand %></h1>
+    <% if(rand % 2 === 0) { %>
+        <h2>Even number</h2>
+    <% } else { %>
+        <h2>Odd number</h2>
+    <% } %>
+    <h3><%= rand === 50 ? 'Number is equal to 50' : rand > 50 ? 'Number is greater than 50' : 'Number is less than 50' %></h3>
 </body>
 </html>
