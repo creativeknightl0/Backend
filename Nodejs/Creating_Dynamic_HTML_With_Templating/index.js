@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/images/miss_amber.jpg', (req, res) => {
-    res.sendFile(`D:/Web Dev Bootcamp/Backend/Nodejs/Creating_Dynamic_HTML_With_Templating/Templating_Demo/images/miss_amber.jpg`);
+    res.sendFile(`/home/da-vinci/Web Dev Bootcamp/Backend/Nodejs/Creating_Dynamic_HTML_With_Templating/images/miss_amber.jpg`);
 })
 
 app.get('/rand', (req, res) => {
