@@ -1,0 +1,63 @@
+{
+    "braveNewWorld": {
+        "name": "BraveNewWorld",
+        "description": "Brave New World Subreddit for the discussion of the book and TV series.",
+        "weekly_visitors": 425,
+        "posts" : [
+            {
+                "title": "Finished Brave New World after reading 1984",
+                "author": "Erwin_Zoldyck"
+            },
+            {
+                "title": "TV Lenina made zero sense",
+                "author": "Erwin_Zoldyck"
+            },
+            {
+                "title": "Setting up the gear people up for so long seems pointless",
+                "author": "Sub_ZEROOOO",
+                "image": "https://preview.redd.it/setting-up-the-gear-people-up-for-so-long-seems-pointless-v0-mxj5evbl5myg1.jpeg?auto=webp&s=50ec910386192e15afe73c121a555d710067455f"
+            }
+        ]
+    },
+    "disclaimer": {
+        "name": "DisclaimerAppleTV",
+        "description": "DisclaimerAppleTV Subreddit for Apple TV+ “Disclaimer,” a new original series from the multi-Academy Award, Golden Globe and BAFTA Award-winning director, writer Alfonso Cuarón, starring Cate Blanchett and Sacha Baron Cohen.",
+        "weekly_visitors": 778,
+        "posts": [
+            {
+                "title": "The Roach",
+                "author": "charmed_unicorn"
+            },
+            {
+                "title": "British People Are so fucked up",
+                "author": "charmed_unicorn"
+            },
+            {
+                "title": "i've only just finished episode 4 but this doesn't make sense to me",
+                "author": "Altruistic-Mix7606"
+            }
+        ]
+    },
+    "skins": {
+        "name": "skinsTV",
+        "description": "Anything Skins! A subreddit dedicated to E4’s critically acclaimed series ‘Skins’ (2007-2013). Skins follows the lives of teenagers in Bristol during their two years of sixth form and the many challenges they face. This is the place for discussions, theories, memes, and celebrating a show that continues to have a lasting impact.",
+        "weekly_visitors": 48000,
+        "posts": [
+            {
+                "title": "I can practically hear the 2007 indie soundtrack blasting through this photo.",
+                "author": "juicewithextrapulp",
+                "image": "https://preview.redd.it/i-can-practically-hear-the-2007-indie-soundtrack-blasting-v0-0x924ube6kah1.png?auto=webp&s=2255717574b1f7956d55a9a7903363f2e2520c02"
+            },
+            {
+                "title": "anyone know what shirt effy is wearing here?",
+                "author": "aespagisellee",
+                "image": "https://preview.redd.it/anyone-know-what-shirt-effy-is-wearing-here-v0-xfrxalohskah1.jpeg?auto=webp&s=0f619cddfabe1af4a8bbf7b943707bd341f8ea2e"
+            },
+            {
+                "title": "Idk.",
+                "author": "weezer__",
+                "vid": "https://packaged-media.redd.it/5kncmboq64ah1/pb/m2-res_1080p.mp4?m=DASHPlaylist.mpd&c=wh_ben_en&var=sgpssan&v=1&e=1782910800&s=f8ab3253e63ab90ba52ee87cc85b44a3f6c52549"
+            }
+        ]
+    }
+}

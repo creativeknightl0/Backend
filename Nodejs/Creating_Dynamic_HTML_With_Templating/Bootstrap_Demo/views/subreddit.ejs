@@ -1,0 +1,30 @@
+<%- include('partials/head') %>
+
+<%- include('partials/nav') %>
+
+<%- include('partials/container') %>
+
+<h1>Browsing the <%= data.name %> subreddit</h1>
+<h2>Description - <%= data.description %></h2>
+<p><%= data.weekly_visitors %> - weekly visitors</p>
+<% let pNo = 1; %>
+<div style="border: 1px solid black; padding: 8px; border-radius: 16px; display: flex; flex-direction: column; gap: 8px;">
+    <% for(const post of data.posts) { %>
+        <div style="border: 1px solid black; padding: 8px; border-radius: 8px;">
+            <p>Post No: <%= pNo %></p>
+            <h3><%= post.title %></h3>
+            <p><%= post.author %></p>
+            <% if(post.image) { %>
+                <img src="<%= post.image %>" alt="Post Image" style="width: 448px; height: 685px;" />
+            <% } %>
+            <% if(post.vid) { %>
+                <video width="448px" height="685px" autoplay loop>
+                    <source src="<%= post.vid %>" type="video/mp4" />
+                </video>
+            <% } %>
+        </div>
+        <% pNo += 1; %>
+    <% } %>
+</div>
+
+<%- include('partials/footer') %>
