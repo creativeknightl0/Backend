@@ -1,0 +1,18 @@
+<%- include('partials/head') %>
+
+<%- include('partials/nav') %>
+
+<%- include('partials/container') %>
+
+<!-- <p><%= favCurr %></p> -->
+<p>My current favourite tv shows list:-</p>
+<ul>
+    <% for(const shows of favCurr) { %>
+        <li><%= shows %></li>
+    <% } %>
+    <% for(const showPosters of favCurrPosters) { %>
+        <img src='<%= showPosters %>' alt="Posters" style="width: 400px; height: 500px;" />
+    <% } %>
+</ul>
+
+<%- include('partials/footer') %>
