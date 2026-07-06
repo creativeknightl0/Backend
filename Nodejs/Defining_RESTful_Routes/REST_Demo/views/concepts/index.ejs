@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>GET /concepts - lists all the concepts given in our resource</h1>
+    <% let i = 0; %>
+    <% for(let wrc of worldRunningConcepts) { %>
+        <% i++; %>
+        <h4><%= i %>. <%= wrc.name %></h4>   
+        <ul>
+            <li>Author - <%= wrc.author %></li>
+            <li>Concept - <%= wrc.description %></li>
+        </ul> 
+    <% } %>
+</body>
+</html>
