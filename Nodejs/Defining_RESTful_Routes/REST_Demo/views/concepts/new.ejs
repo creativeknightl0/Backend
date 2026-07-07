@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form for new concept</title>
+</head>
+<body>
+    <h1>Create new concept form</h1>
+    <form action="/concepts" method="post">
+        <section>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name">
+        </section>
+        <section>
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author">
+        </section>
+        <section>
+            <label for="desc">Description:</label>
+            <br />
+            <textarea name="description" id="desc"></textarea>
+        </section>
+        <button>Submit</button>
+    </form>
+</body>
+</html>

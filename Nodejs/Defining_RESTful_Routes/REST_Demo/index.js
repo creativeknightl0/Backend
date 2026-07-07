@@ -36,6 +36,18 @@ app.get('/concepts', (req, res) => {
     res.render('concepts/index', {worldRunningConcepts});
 })
 
+// GET /concepts/new for template form rendering
+app.get('/concepts/new', (req, res) => {
+    res.render('concepts/new');
+})
+
+// POST /concepts to add the new concept row in our fake db
+app.post('/concepts', (req, res) => {
+    const {name, author, description} = req.body;
+    worldRunningConcepts.push({name, author, description});
+    res.send('New row added');
+})
+
 app.listen(3000, () => {
     console.log('Listening on port 3000');
 })
