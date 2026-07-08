@@ -45,7 +45,7 @@ app.get('/concepts/new', (req, res) => {
 app.post('/concepts', (req, res) => {
     const {name, author, description} = req.body;
     worldRunningConcepts.push({name, author, description});
-    res.send('New row added');
+    res.redirect('/concepts');
 })
 
 app.listen(3000, () => {
