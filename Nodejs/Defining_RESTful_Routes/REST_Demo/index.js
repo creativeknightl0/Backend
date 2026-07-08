@@ -41,7 +41,7 @@ app.get('/concepts/new', (req, res) => {
     res.render('concepts/new');
 })
 
-// POST /concepts to add the new concept row in our fake db
+// POST /concepts to add the new concept row in our fake db - Create operation
 app.post('/concepts', (req, res) => {
     const {name, author, description} = req.body;
     worldRunningConcepts.push({name, author, description});
