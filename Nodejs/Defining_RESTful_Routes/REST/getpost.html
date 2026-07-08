@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET and POST Requests</title>
+</head>
+<body>
+    <h1>GET Request</h1>
+    <form action="http://localhost:3000/burritos" method="get">
+        <input type="text" name="item_name">
+        <input type="number" name="item_qty">
+        <button>Submit</button>
+    </form>
+
+    <h1>POST Request</h1>
+    <form action="http://localhost:3000/burritos" method="post">
+        <input type="text" name="item_name">
+        <input type="number" name="item_qty">
+        <button>Submit</button>
+    </form>
+</body>
+</html>
