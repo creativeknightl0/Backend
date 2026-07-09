@@ -10,11 +10,12 @@
     <% let i = 0; %>
     <% for(let wrc of worldRunningConcepts) { %>
         <% i++; %>
-        <h4><%= i %>. <%= wrc.name %></h4>   
+        <h4><%= i %>. <%= wrc.name %> - <a href="/concepts/<%= wrc.id %>">More Details</a></h4>   
         <ul>
             <li>Author - <%= wrc.author %></li>
             <li>Concept - <%= wrc.description %></li>
         </ul> 
     <% } %>
+    <a href="/concepts/new">Add New Concept</a>
 </body>
 </html>

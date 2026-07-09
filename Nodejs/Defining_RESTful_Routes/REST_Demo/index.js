@@ -20,11 +20,13 @@ app.post('/burritos', (req, res) => {
 
 const worldRunningConcepts = [
     {
+        id: 1,
         name: '1984',
         author: 'George Orwell',
         description: 'Based on spying on every citizen thoughts using thought police and language changes'
     },
     {
+        id: 2,
         name: 'Brave New World',
         author: 'Aldous Huxley',
         description: 'A futurisitic world where drugs are given to make every citizen happy!'
@@ -46,6 +48,13 @@ app.post('/concepts', (req, res) => {
     const {name, author, description} = req.body;
     worldRunningConcepts.push({name, author, description});
     res.redirect('/concepts');
+})
+
+// GET /concepts/{id} - lists the particular concept associated with the id asked
+app.get('/concepts/:id', (req, res) => {
+    const {id} = req.params;
+    const mappedConcept = worldRunningConcepts.find(wc => wc.id === Number(id));
+    res.render('concepts/single', {mappedConcept});
 })
 
 app.listen(3000, () => {
