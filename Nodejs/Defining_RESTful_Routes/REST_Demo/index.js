@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const {v4: uuid} = require('uuid');
 
 app.use(express.urlencoded({extended: true})); // for telling express that to use this encoding mechanism, otherwise it will will be undefined for default 
 app.use(express.json()); // for json data encoding
@@ -18,34 +19,55 @@ app.post('/burritos', (req, res) => {
     res.send(`Thank you. Your order is ready, please receive your ${item_qty} ${item_name} burrito from the counter.`)
 })
 
-const worldRunningConcepts = [
+let worldRunningConcepts = [
     {
+        id: uuid(),
         name: '1984',
         author: 'George Orwell',
         description: 'Based on spying on every citizen thoughts using thought police and language changes'
     },
     {
+        id: uuid(),
         name: 'Brave New World',
         author: 'Aldous Huxley',
         description: 'A futurisitic world where drugs are given to make every citizen happy!'
     }
 ];
 
-// GET /concepts to list all the concepts in our fake database table resource - concept - worldRunningConcepts, operation here is READ
+// Index - GET /concepts to list all the concepts in our fake database table resource - concept - worldRunningConcepts, operation here is READ
 app.get('/concepts', (req, res) => {
     res.render('concepts/index', {worldRunningConcepts});
 })
 
-// GET /concepts/new for template form rendering
+// New - GET /concepts/new for template form rendering
 app.get('/concepts/new', (req, res) => {
     res.render('concepts/new');
 })
 
-// POST /concepts to add the new concept row in our fake db - Create operation
+// Post - POST /concepts to add the new concept row in our fake db - Create operation
 app.post('/concepts', (req, res) => {
     const {name, author, description} = req.body;
-    worldRunningConcepts.push({name, author, description});
+    worldRunningConcepts.push({id: uuid(), name, author, description});
     res.redirect('/concepts');
+})
+
+// Show - GET /concepts/:id - lists the particular concept associated with the id asked
+app.get('/concepts/:id', (req, res) => {
+    const {id} = req.params;
+    const mappedConcept = worldRunningConcepts.find(wc => wc.id === Number(id));
+    res.render('concepts/show', {mappedConcept});
+})
+
+// Edit - GET /concepts/:id/edit - renders the edit.ejs template form with existing particular concept details
+app.get('/concepts/:id/edit', (req, res) => {
+    const {id} = req.params;
+    const particularConcept = req.body.concept;
+    res.render('concepts/edit', {particularConcept});
+})
+
+// Patch - PATCH /concepts/:id - modifies the particular concept details
+app.patch('/concepts/:id', (req, res) => {
+    
 })
 
 app.listen(3000, () => {
