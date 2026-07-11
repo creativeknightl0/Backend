@@ -11,5 +11,11 @@
     <h2>Authored by: <%= mappedConcept.author %></h2>
     <h3>Description: <%= mappedConcept.description %></h3>
     <a href="/concepts">Go back</a>
+    <a href="/concepts/<%= mappedConcept.id %>/edit">Edit</a>
+    <br />
+    <br />
+    <form action="/concepts/<%= mappedConcept.id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
 </body>
 </html>
