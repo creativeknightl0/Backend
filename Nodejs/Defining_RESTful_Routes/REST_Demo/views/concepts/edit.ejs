@@ -6,8 +6,21 @@
     <title>Edit Concept</title>
 </head>
 <body>
-    <form action="/concepts/">
-
+    <form action="/concepts/<%= matchedConcept.id %>?_method=PATCH" method="POST">
+        <section>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" value="<%= matchedConcept.name %>">
+        </section>
+        <section>
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author" value="<%= matchedConcept.author %>">
+        </section>
+        <section>
+            <label for="desc">Description:</label>
+            <br />
+            <textarea name="description" id="desc"><%= matchedConcept.description %></textarea>
+        </section>
+        <button>Submit</button>
     </form>
 </body>
 </html>
