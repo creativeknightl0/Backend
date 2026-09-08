@@ -1,0 +1,15 @@
+1) ls - listing files and directories in the current directory
+2) pwd - print working directory
+3) cd - changing directories
+4) cd .. - going back a directory
+5) Relative path - reaching to some destination in respect to current directory.
+6) ~ - home directory
+7) / - root directory
+8) Absolute path - wherever you are you reach the destination in respect to the / root directory.
+9) touch - to create a new file or files
+10) rm - to remove file or files
+11) mkdir - to create new directory or directories
+12) rmdir - to delete empty directory or directories
+13) rm -rf - to delete non-empty directory or directories, r means recursive so it goes on deleting everything in the non-empty directory continously and f means force so it doesn't stop for asking us about permissions.
+14) man - manual to find out about any of the command
+15) flag - added to the command to pass it as an argument to the function so it can execute that command as per our argument provided.

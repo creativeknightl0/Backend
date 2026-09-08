@@ -4,12 +4,14 @@
   "description": "",
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@cospired/i18n-iso-languages": "^4.2.0",
     "google-translate-api-x": "^10.7.3"
-  }
+  },
+  "keywords": []
 }
