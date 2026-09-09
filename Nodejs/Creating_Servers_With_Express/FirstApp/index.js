@@ -41,6 +41,16 @@ app.get('/cats', (req, res) => {
     res.send('Meow!');
 })
 
+// query string
+app.get('/chairs', (req, res) => {
+    const {brand} = req.query;
+    res.send(`This is ${brand}'s top-of-the-selve, solid and best-in-class chair.`);
+})
+
+// app.get('/chairs', (req, res) => {
+//     res.send('This is a chair get route that you have visited!');
+// })
+
 app.post('/cats', (req, res) => {
     res.send('Post request Meow!');
 })
@@ -48,6 +58,12 @@ app.post('/cats', (req, res) => {
 app.get('/dogs', (req, res) => {
     // console.log('Dog request');
     res.send('Woof!');
+})
+
+// params
+app.get('/chairs/:type', (req, res) => {
+    const {type} = req.params;
+    res.send(`This is ${type} chair that you are seeing`);
 })
 
 // query string
