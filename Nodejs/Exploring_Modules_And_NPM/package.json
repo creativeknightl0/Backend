@@ -1,0 +1,23 @@
+{
+  "name": "exploring_modules_and_npm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@cospired/i18n-iso-languages": "^4.2.0",
+    "colors": "^1.4.0",
+    "cowsay": "^1.6.0",
+    "figlet": "^1.11.4",
+    "franc": "^5.0.0",
+    "give-me-a-joke": "^0.5.1",
+    "google-translate-api-x": "^10.7.3",
+    "langs": "^2.0.0"
+  }
+}

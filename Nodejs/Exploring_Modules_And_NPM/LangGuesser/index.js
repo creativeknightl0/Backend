@@ -18,5 +18,5 @@ if(langCode === 'und') {
 }
 else {
     const language = langs.where(3, langCode);
-    console.log(`Our best guess: ${language.name}`.green);
+    console.log(`Our best guess: ${language.name}`.yellow);
 }
