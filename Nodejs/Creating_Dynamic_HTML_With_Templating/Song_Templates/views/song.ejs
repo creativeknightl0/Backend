@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song</title>
+</head>
+<body>
+    <h1>All Songs Information</h1>
+    <% for(const info of song_info) { %>
+        <p>Song Name: <b><a href="/songs/<%= info.id %>"><%= info.name %></a></b></p>
+        <p>Album: <b><%= info.album %></b></p>
+        <p>Singer/Band: <b><%= info.author %></b></p>
+        <p>Song Writer: <b><%= info.writer %></b></p>
+        <p>Record Label: <b><%= info.label %></b></p>
+        <p>Song Genre: <b><%= info.genre %></b></p>
+        <p>Length: <b><%= info.length %></b></p>
+        <p>Release date: <b><%= info.release_date %></b></p>
+        <% if(info.id !== song_info.length ) { %>
+            <hr>
+        <% } %>
+    <% } %>
+</body>
+</html>
