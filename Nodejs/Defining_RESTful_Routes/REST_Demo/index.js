@@ -18,8 +18,17 @@ app.post('/burritos', (req, res) => {
     // console.log(req.body); // to see the post request's request body
     const {item_name, item_qty} = req.body;
     // res.send('POST /burritos response');
-    res.send(`Thank you. Your order is ready, please receive your ${item_qty} ${item_name} burrito from the counter.`)
+    res.send(`Thank you. Your order is ready, please receive your ${item_qty} ${item_name} ${item_qty > 1 ? 'burritos': 'burrito'} from the counter.`)
 })
+
+app.get('/fitness', (req, res) => {
+    res.send('These are the products available');
+})
+
+app.post('/fitness', (req, res) => {
+    const {name, qty, category} = req.body;
+    res.send(`Your order for ${qty} ${name} in the category of ${category} is successfully placed and will reach to your destination soon :)`);
+});
 
 let worldRunningConcepts = [
     {
