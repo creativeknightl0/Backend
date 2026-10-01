@@ -109,6 +109,32 @@ app.delete('/concepts/:id', (req, res) => {
     res.redirect('/concepts');
 });
 
+const twitchStreamers = [
+    {
+        username: 'kandyfloz',
+        followers: 8000,
+        subscribers: 0
+    },
+    {
+        username: 'ok_judy',
+        followers: 3000,
+        subscribers: 35
+    },
+    {
+        username: 'apollol',
+        followers: 2000,
+        subscribers: 600
+    }
+];
+
+// RESOURCE - Twitch Streamer
+// GET /twitch/streamers - list all the twitch streamers
+app.get('/twitch/streamers', (req, res) => {
+    res.render('twitch/streamers/index', {twitchStreamers});
+})
+
+// POST /twitch/streamers - create a new twitch streamer record
+
 app.listen(3000, () => {
     console.log('Listening on port 3000');
 })

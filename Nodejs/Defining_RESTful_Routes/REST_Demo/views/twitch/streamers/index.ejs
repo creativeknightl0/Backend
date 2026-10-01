@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Twitch Streamers</title>
+</head>
+<body>
+    <h1>GET /twitch/streamers - List all the twitch streamers</h1>
+    <div>
+        <% let count = 0; %>
+        <% for(const streamer of twitchStreamers) { %>
+                <% count += 1; %>
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 0px 16px;">
+                    <div>
+                        <h3>Username: <%= streamer.username %></h3>
+                        <h3>Followers: <%= streamer.followers %></h3>
+                        <h3>Subscribers: <%= streamer.subscribers %></h3>
+                    </div>
+                    <div style="padding: 16px; background-color: purple; color: white; border-radius: 20%; ">
+                        <%= count %>
+                    </div>
+                </div>
+                <% if(count < twitchStreamers.length) { %>
+                    <hr>
+                <% } %>
+        <% } %>
+    </div>
+</body>
+</html>
