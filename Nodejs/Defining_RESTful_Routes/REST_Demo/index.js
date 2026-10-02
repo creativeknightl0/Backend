@@ -111,16 +111,19 @@ app.delete('/concepts/:id', (req, res) => {
 
 const twitchStreamers = [
     {
+        id: uuid(),
         username: 'kandyfloz',
         followers: 8000,
         subscribers: 0
     },
     {
+        id: uuid(),
         username: 'ok_judy',
         followers: 3000,
         subscribers: 35
     },
     {
+        id: uuid(),
         username: 'apollol',
         followers: 2000,
         subscribers: 600
@@ -133,7 +136,24 @@ app.get('/twitch/streamers', (req, res) => {
     res.render('twitch/streamers/index', {twitchStreamers});
 })
 
+// GET /twitch/streamers/new - create new twitch streamer form rendering
+app.get('/twitch/streamers/new', (req, res) => {
+    res.render('twitch/streamers/new');
+})
+
 // POST /twitch/streamers - create a new twitch streamer record
+app.post('/twitch/streamers', (req, res) => {
+    const {username, followers, subscribers} = req.body;
+    twitchStreamers.push({username, followers, subscribers, id: uuid()});
+    res.redirect('/twitch/streamers');
+})
+
+// GET /twitch/streamers - show particular streamer only with id with uuid because for new created streamer count based id doesn't work or not good practice
+app.get('/twitch/streamers/:id', (req, res) => {
+    const {id} = req.params;
+    const particularTwitchStreamer = twitchStreamers.find(twitch => twitch.id === id);
+    res.render('twitch/streamers/show', {particularTwitchStreamer});
+})
 
 app.listen(3000, () => {
     console.log('Listening on port 3000');
