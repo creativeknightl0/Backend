@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Particular Twitch Streamer</title>
+</head>
+<body>
+    <h1>GET /twitch/streamers/:id - Show the particular ID'ed twitch streamer</h1>
+    <h3>Username: <%= particularTwitchStreamer.username %></h3>
+    <h3>Followers: <%= particularTwitchStreamer.followers %></h3>
+    <h3>Subscribers: <%= particularTwitchStreamer.subscribers %></h3>
+    <form action="/twitch/streamers/<%= particularTwitchStreamer.id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+</body>
+</html>

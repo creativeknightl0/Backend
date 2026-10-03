@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Twitch Streamer</title>
+</head>
+<body>
+    <h1>POST /twitch/streamers - Create new twitch streamer</h1>
+    <form action="/twitch/streamers" method="POST" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username" />
+
+        <label for="followers">Followers: </label>
+        <input type="number" id="followers" name="followers" />
+
+        <label for="subs">Subscribers: </label>
+        <input type="number" id="subs" name="subscribers" />
+
+        <button>Submit</button>
+    </form>
+</body>
+</html>

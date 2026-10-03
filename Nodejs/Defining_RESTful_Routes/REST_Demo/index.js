@@ -109,18 +109,21 @@ app.delete('/concepts/:id', (req, res) => {
     res.redirect('/concepts');
 });
 
-const twitchStreamers = [
+let twitchStreamers = [
     {
+        id: uuid(),
         username: 'kandyfloz',
         followers: 8000,
         subscribers: 0
     },
     {
+        id: uuid(),
         username: 'ok_judy',
         followers: 3000,
         subscribers: 35
     },
     {
+        id: uuid(),
         username: 'apollol',
         followers: 2000,
         subscribers: 600
@@ -133,7 +136,49 @@ app.get('/twitch/streamers', (req, res) => {
     res.render('twitch/streamers/index', {twitchStreamers});
 })
 
+// GET /twitch/streamers/new - create new twitch streamer form rendering
+app.get('/twitch/streamers/new', (req, res) => {
+    res.render('twitch/streamers/new');
+})
+
 // POST /twitch/streamers - create a new twitch streamer record
+app.post('/twitch/streamers', (req, res) => {
+    const {username, followers, subscribers} = req.body;
+    twitchStreamers.push({username, followers, subscribers, id: uuid()});
+    res.redirect('/twitch/streamers');
+})
+
+// GET /twitch/streamers - show particular streamer only with id with uuid because for new created streamer count based id doesn't work or not good practice
+app.get('/twitch/streamers/:id', (req, res) => {
+    const {id} = req.params;
+    const particularTwitchStreamer = twitchStreamers.find(twitch => twitch.id === id);
+    res.render('twitch/streamers/show', {particularTwitchStreamer});
+})
+
+// GET /twitch/streamers/:id/edit - show particular streamer details to be edited
+app.get('/twitch/streamers/:id/edit', (req, res) => {
+    const {id} = req.params;
+    const foundTwitchStreamer = twitchStreamers.find(t => t.id === id);
+    res.render('twitch/streamers/edit', {foundTwitchStreamer});
+})
+
+// PATCH /twitch/streamers/:id - update the particular twitch streamer edited details
+app.patch('/twitch/streamers/:id', (req, res) => {
+    const {id} = req.params;
+    const {username, followers, subscribers} = req.body;
+    const foundTwitchStreamer = twitchStreamers.find(t => t.id === id);
+    foundTwitchStreamer.username = username;
+    foundTwitchStreamer.followers = followers;
+    foundTwitchStreamer.subscribers = subscribers;
+    res.redirect('/twitch/streamers');
+})
+
+// DELETE /twitch/streamers/:id - to delete the particular streamer from the full list
+app.delete('/twitch/streamers/:id', (req, res) => {
+    const {id} = req.params;
+    twitchStreamers = twitchStreamers.filter(t => t.id !== id);
+    res.redirect('/twitch/streamers');
+})
 
 app.listen(3000, () => {
     console.log('Listening on port 3000');
