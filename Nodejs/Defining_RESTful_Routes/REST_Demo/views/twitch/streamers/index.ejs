@@ -17,8 +17,11 @@
                         <h3>Followers: <%= streamer.followers %></h3>
                         <h3>Subscribers: <%= streamer.subscribers %></h3>
                     </div>
-                    <div style="padding: 16px; background-color: purple; color: white; border-radius: 20%; ">
-                        <%= count %>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <a href="/twitch/streamers/<%= streamer.id %>/edit">Edit</a>
+                        <div style="padding: 16px; background-color: purple; color: white; border-radius: 20%; ">
+                            <%= count %>
+                        </div>
                     </div>
                 </div>
                 <% if(count < twitchStreamers.length) { %>

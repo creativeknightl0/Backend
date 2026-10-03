@@ -109,7 +109,7 @@ app.delete('/concepts/:id', (req, res) => {
     res.redirect('/concepts');
 });
 
-const twitchStreamers = [
+let twitchStreamers = [
     {
         id: uuid(),
         username: 'kandyfloz',
@@ -153,6 +153,31 @@ app.get('/twitch/streamers/:id', (req, res) => {
     const {id} = req.params;
     const particularTwitchStreamer = twitchStreamers.find(twitch => twitch.id === id);
     res.render('twitch/streamers/show', {particularTwitchStreamer});
+})
+
+// GET /twitch/streamers/:id/edit - show particular streamer details to be edited
+app.get('/twitch/streamers/:id/edit', (req, res) => {
+    const {id} = req.params;
+    const foundTwitchStreamer = twitchStreamers.find(t => t.id === id);
+    res.render('twitch/streamers/edit', {foundTwitchStreamer});
+})
+
+// PATCH /twitch/streamers/:id - update the particular twitch streamer edited details
+app.patch('/twitch/streamers/:id', (req, res) => {
+    const {id} = req.params;
+    const {username, followers, subscribers} = req.body;
+    const foundTwitchStreamer = twitchStreamers.find(t => t.id === id);
+    foundTwitchStreamer.username = username;
+    foundTwitchStreamer.followers = followers;
+    foundTwitchStreamer.subscribers = subscribers;
+    res.redirect('/twitch/streamers');
+})
+
+// DELETE /twitch/streamers/:id - to delete the particular streamer from the full list
+app.delete('/twitch/streamers/:id', (req, res) => {
+    const {id} = req.params;
+    twitchStreamers = twitchStreamers.filter(t => t.id !== id);
+    res.redirect('/twitch/streamers');
 })
 
 app.listen(3000, () => {

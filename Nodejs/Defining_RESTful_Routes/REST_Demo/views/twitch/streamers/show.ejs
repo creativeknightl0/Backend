@@ -10,5 +10,8 @@
     <h3>Username: <%= particularTwitchStreamer.username %></h3>
     <h3>Followers: <%= particularTwitchStreamer.followers %></h3>
     <h3>Subscribers: <%= particularTwitchStreamer.subscribers %></h3>
+    <form action="/twitch/streamers/<%= particularTwitchStreamer.id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
 </body>
 </html>
