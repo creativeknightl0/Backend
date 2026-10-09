@@ -18,13 +18,17 @@ const theCardigansSchema = new mongoose.Schema({
     },
     views: {
         type: Number,
-        min: 0
+        min: [0, "view count for a song can't be -ve"]
     },
     likedByMe: {
         type: Boolean,
         default: false
     },
-    genre: [String]
+    genre: [String],
+    bpm: {
+        type: String,
+        enum: ['low', 'mid', 'high']
+    }
 });
 
 // create a model
@@ -159,7 +163,7 @@ const Cardigan = mongoose.model('Cardigan', theCardigansSchema);
 //     })
 
 // mongoose schema validations
-// after we defined reduired in our existing schema for songName
+// after we defined required in our existing schema for songName
 // const addCardiganSong = new Cardigan({views: 12345, likedByMe: false}); // shows error ValidationError: songName: Path `songName` is required
 // addCardiganSong.save()
 //     .then((d) => {
@@ -234,10 +238,28 @@ const Cardigan = mongoose.model('Cardigan', theCardigansSchema);
 //     })
 
 // add runValidators: true property to run the validations defined the schema for updation as well
-Cardigan.findOneAndUpdate({songName: 'Rise & Shine'}, {views: -12345}, {new: true, runValidators: true}) // now updation failed with mentioning -12345 is less than defined min 0 in the schema
+// Cardigan.findOneAndUpdate({songName: 'Rise & Shine'}, {views: -12345}, {new: true, runValidators: true}) // now updation failed with mentioning -12345 is less than defined min 0 in the schema
+//     .then(() => {
+//         console.log('Updation was successful');
+//     })
+//     .catch(e => {
+//         console.log('Updation failed: ' + e);
+//     })
+
+// add custom validation error message in schema for price and see the difference in error message
+// Cardigan.findOneAndUpdate({songName: 'Hanging Around'}, {views: -789}, {new: true, runValidators: true}) // here error shows like ValidationError: views: view count for a song can't be -ve - same as custom messgae
+//     .then(() => {
+//         console.log('Updation was successful!');
+//     })
+//     .catch((e) => {
+//         console.log('Error while updating: ' + e);
+//     })
+
+// validation for enum values
+Cardigan.findOneAndUpdate({songName: 'Rise & Shine'}, {bpm: 'very high'}, {new: true, runValidators: true})  // shows ValidationError: bpm: `very high` is not a valid enum value for path `bpm`
     .then(() => {
         console.log('Updation was successful');
     })
     .catch(e => {
-        console.log('Updation failed: ' + e);
+        console.log('There was an error while updating: ' + e);
     })
