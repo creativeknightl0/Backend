@@ -31,6 +31,22 @@ const theCardigansSchema = new mongoose.Schema({
     }
 });
 
+// define methods for model instances
+theCardigansSchema.methods.welcome = function() {
+    console.log('Welcome to the Cardigans Club!');
+}
+
+// it can be only in normal functions not the callback ones because this method doesn't work in callbacks
+theCardigansSchema.methods.toggleLike = function() {
+    this.likedByMe = !this.likedByMe;
+    return this.save();
+}
+
+theCardigansSchema.methods.addGenre = function(newGenre) {
+    this.genre.push(newGenre);
+    return this.save();
+}
+
 // create a model
 const Cardigan = mongoose.model('Cardigan', theCardigansSchema);
 
@@ -256,10 +272,33 @@ const Cardigan = mongoose.model('Cardigan', theCardigansSchema);
 //     })
 
 // validation for enum values
-Cardigan.findOneAndUpdate({songName: 'Rise & Shine'}, {bpm: 'very high'}, {new: true, runValidators: true})  // shows ValidationError: bpm: `very high` is not a valid enum value for path `bpm`
-    .then(() => {
-        console.log('Updation was successful');
-    })
-    .catch(e => {
-        console.log('There was an error while updating: ' + e);
-    })
+// Cardigan.findOneAndUpdate({songName: 'Rise & Shine'}, {bpm: 'very high'}, {new: true, runValidators: true})  // shows ValidationError: bpm: `very high` is not a valid enum value for path `bpm`
+//     .then(() => {
+//         console.log('Updation was successful');
+//     })
+//     .catch(e => {
+//         console.log('There was an error while updating: ' + e);
+//     })
+
+// methods in mongoose - can be defined before model is created
+
+const welcomeFunc = async() => {
+    const findCardiganSong = await Cardigan.findById('6ac7868b47a5bf0f693dd198');
+    findCardiganSong.welcome(); // by this all the instances of the model gets access to the method
+}
+
+welcomeFunc();
+
+const toggleFunc = async() => {
+    const findCardiganSong = await Cardigan.findOne({songName: 'Rise & Shine'});
+    await findCardiganSong.toggleLike();
+}
+
+toggleFunc();
+
+const updateSongUsingMethod = async() => {
+    const findCardiganSong = await Cardigan.findOne({songName: 'Rise & Shine'});
+    await findCardiganSong.addGenre('Alt Rock');
+}
+
+updateSongUsingMethod();
