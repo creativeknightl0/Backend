@@ -47,6 +47,31 @@ theCardigansSchema.methods.addGenre = function(newGenre) {
     return this.save();
 }
 
+// defining model static method which can enable for us to use mongoose model methods using this
+theCardigansSchema.statics.likedByMeFullUpdate = function() {
+    return this.updateMany({}, {likedByMe: false});
+}
+
+// defining virtuals
+theCardigansSchema.virtual('printSongNameWithBandName')
+    .get(function() {
+        return `${this.songName} - The Cardigans`;
+    })
+    .set(function(changedSongName) {
+        this.songName = changedSongName;
+    })
+
+// defining mongoose middleware
+// pre 'save' - runs before saving data
+theCardigansSchema.pre('save', async() => {
+    console.log('PRE SAVE');
+})
+
+// post 'save' - runs after saving data
+theCardigansSchema.post('save', async() => {
+    console.log('POST SAVE');
+})
+
 // create a model
 const Cardigan = mongoose.model('Cardigan', theCardigansSchema);
 
@@ -282,23 +307,45 @@ const Cardigan = mongoose.model('Cardigan', theCardigansSchema);
 
 // methods in mongoose - can be defined before model is created
 
-const welcomeFunc = async() => {
-    const findCardiganSong = await Cardigan.findById('6ac7868b47a5bf0f693dd198');
-    findCardiganSong.welcome(); // by this all the instances of the model gets access to the method
-}
+// const welcomeFunc = async() => {
+//     const findCardiganSong = await Cardigan.findById('6ac7868b47a5bf0f693dd198');
+//     findCardiganSong.welcome(); // by this all the instances of the model gets access to the method
+// }
 
-welcomeFunc();
+// welcomeFunc();
 
-const toggleFunc = async() => {
-    const findCardiganSong = await Cardigan.findOne({songName: 'Rise & Shine'});
-    await findCardiganSong.toggleLike();
-}
+// const toggleFunc = async() => {
+//     const findCardiganSong = await Cardigan.findOne({songName: 'Rise & Shine'});
+//     await findCardiganSong.toggleLike();
+// }
 
-toggleFunc();
+// toggleFunc();
 
-const updateSongUsingMethod = async() => {
-    const findCardiganSong = await Cardigan.findOne({songName: 'Rise & Shine'});
-    await findCardiganSong.addGenre('Alt Rock');
-}
+// const updateSongUsingMethod = async() => {
+//     const findCardiganSong = await Cardigan.findOne({songName: 'Rise & Shine'});
+//     await findCardiganSong.addGenre('Alt Rock');
+// }
 
-updateSongUsingMethod();
+// updateSongUsingMethod();
+
+// model static methods - these are the methods that are mainly applied to all the data in the model instead of particular data which was possible through the model instance methods
+// const updateAllDocs = () => Cardigan.likedByMeFullUpdate();
+// updateAllDocs()
+//     .then(d => {
+//         console.log('Updated all the docs: ' + d);
+//     })
+//     .catch(e => {
+//         console.log('Error while updating: ' + e);
+//     })
+
+// virtuals in mongoose - they are used for creating some keys and values that aren't saved in mongodb, but workable in a way that it was saved in mongodb
+// const newCardiganSong = new Cardigan({songName: 'Communication', views: 13600, likedByMe: true});
+// console.log(newCardiganSong);
+// console.log('Before set: ' + newCardiganSong.printSongNameWithBandName);
+// newCardiganSong.printSongNameWithBandName = 'Rogue'; // it will not get updated normally, so for that we need to add set function in the same virtual
+// console.log('After set: ' + newCardiganSong.printSongNameWithBandName);
+
+// mongoose middleware - it gets the control while running asynchronous function
+// pre and post
+// const newCardiganSong = new Cardigan({songName: 'Communication', views: 13600, likedByMe: true});
+// newCardiganSong.save();
