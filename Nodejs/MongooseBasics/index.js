@@ -81,6 +81,12 @@ theCardigansSchema.virtual('monthlyAvgViews')
         this.views += surpriseTrendViewsIncrease;
     })
 
+// again the fucking virtuals
+theCardigansSchema.virtual('songLikedByMeOrNot')
+    .get(function() {
+        return `${this.songName} is ${this.likedByMe ? 'liked by me' : 'not liked by me'}`;
+    })
+
 // defining mongoose middleware
 // pre 'save' - runs before saving data
 theCardigansSchema.pre('save', async() => {
@@ -388,14 +394,25 @@ const deleteTheDuplicateSong = async(song) => {
 
 // virtuals - with get and set for creating, reading and editing key and values that will be present to be accessed here code but not be saved to the mongodb
 // calling get virtual
-const cardiganSong = async() => { 
-    const findCardiganSong = await Cardigan.findOne({songName: 'Carnival'})
-    // Call virtual - get
-    console.log(findCardiganSong.monthlyAvgViews);
-    // set virtual
-    findCardiganSong.monthlyAvgViews = 20000;
-    // get virtual
-    console.log(findCardiganSong.monthlyAvgViews);
-};
+// const cardiganSong = async() => { 
+//     const findCardiganSong = await Cardigan.findOne({songName: 'Carnival'})
+//     // Call virtual - get
+//     console.log(findCardiganSong.monthlyAvgViews);
+//     // set virtual
+//     findCardiganSong.monthlyAvgViews = 20000;
+//     // get virtual
+//     console.log(findCardiganSong.monthlyAvgViews);
+// };
 
-cardiganSong();
+// cardiganSong();
+
+// test - practice again and again model static methods to perform particular songs to turn their liked by me to true
+// lets do later
+
+// practice again and again virtuals which allows us to define variables that is not in the db but behaves like one
+const theCardigansSongLikedByMeOrNot = async() => {
+    const findSongFromList = await Cardigan.findOne({songName: 'Communication'});
+    console.log(findSongFromList.songLikedByMeOrNot);
+}
+
+theCardigansSongLikedByMeOrNot();
