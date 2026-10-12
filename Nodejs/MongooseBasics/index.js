@@ -47,9 +47,20 @@ theCardigansSchema.methods.addGenre = function(newGenre) {
     return this.save();
 }
 
+// model instance methods - target single document, schema.methods.funcName = function() {}
+theCardigansSchema.methods.viewsReset = function() {
+    this.views = 0;
+    return this.save();
+}
+
 // defining model static method which can enable for us to use mongoose model methods using this
 theCardigansSchema.statics.likedByMeFullUpdate = function() {
     return this.updateMany({}, {likedByMe: false});
+}
+
+// targets - model methods and schema.statics.functionName = function() {}
+theCardigansSchema.statics.deleteDuplicate = function(song) {
+    return this.findOneAndDelete({songName: song}, {new: true, runValidators: true});
 }
 
 // defining virtuals
@@ -59,6 +70,21 @@ theCardigansSchema.virtual('printSongNameWithBandName')
     })
     .set(function(changedSongName) {
         this.songName = changedSongName;
+    })
+
+// schema.virtuals('functionName').get(function(empty/parameter) {}).set(function(value) {})
+theCardigansSchema.virtual('monthlyAvgViews')
+    .get(function() {
+        return `Estimated monthly average views: ${Math.floor((this.views)/(365*30))}`; // return is important here console doesn't work
+    })
+    .set(function(surpriseTrendViewsIncrease) {
+        this.views += surpriseTrendViewsIncrease;
+    })
+
+// again the fucking virtuals
+theCardigansSchema.virtual('songLikedByMeOrNot')
+    .get(function() {
+        return `${this.songName} is ${this.likedByMe ? 'liked by me' : 'not liked by me'}`;
     })
 
 // defining mongoose middleware
@@ -349,3 +375,44 @@ const Cardigan = mongoose.model('Cardigan', theCardigansSchema);
 // pre and post
 // const newCardiganSong = new Cardigan({songName: 'Communication', views: 13600, likedByMe: true});
 // newCardiganSong.save();
+
+// practice again
+// model instance methods
+const resetViews = async(song) => {
+    const findCardiganSong = await Cardigan.findOne({songName: song});
+    findCardiganSong.viewsReset();
+}
+
+// resetViews('Communication');
+
+// static methods of Model
+const deleteTheDuplicateSong = async(song) => {
+    await Cardigan.deleteDuplicate(song);
+}
+
+// deleteTheDuplicateSong('Communication');
+
+// virtuals - with get and set for creating, reading and editing key and values that will be present to be accessed here code but not be saved to the mongodb
+// calling get virtual
+// const cardiganSong = async() => { 
+//     const findCardiganSong = await Cardigan.findOne({songName: 'Carnival'})
+//     // Call virtual - get
+//     console.log(findCardiganSong.monthlyAvgViews);
+//     // set virtual
+//     findCardiganSong.monthlyAvgViews = 20000;
+//     // get virtual
+//     console.log(findCardiganSong.monthlyAvgViews);
+// };
+
+// cardiganSong();
+
+// test - practice again and again model static methods to perform particular songs to turn their liked by me to true
+// lets do later
+
+// practice again and again virtuals which allows us to define variables that is not in the db but behaves like one
+const theCardigansSongLikedByMeOrNot = async() => {
+    const findSongFromList = await Cardigan.findOne({songName: 'Communication'});
+    console.log(findSongFromList.songLikedByMeOrNot);
+}
+
+theCardigansSongLikedByMeOrNot();
