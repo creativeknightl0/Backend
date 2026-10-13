@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create new book record</title>
+</head>
+<body>
+    <h1>POST /books - to create new book</h1>
+    <form action="/books" method="POST" style="display: flex; flex-direction: column; align-items: start; gap: 16px;">
+        <div>
+            <label for="name">Book Name:</label>
+            <input type="text" name="name" id="name" />
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea name="description" id="description"></textarea>
+        </div>
+        <div>
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author" />
+        </div>
+        <div>
+            <label for="publisher">Publisher:</label>
+            <input type="text" name="publisher" id="publisher" />
+        </div>
+        <div>
+            <label for="publishedInWhichYear">Publish Year:</label>
+            <input type="number" name="publishedInWhichYear" id="publishedInWhichYear" />
+        </div>
+        <div>
+            <label for="">Genre:</label>
+            <input type="text" name="genre" id="genre">
+        </div>
+        <div>
+            <label for="pages">Pages:</label>
+            <input type="number" name="pages" id="pages">
+        </div>
+        <button>Submit</button>
+    </form>
+</body>
+</html>
