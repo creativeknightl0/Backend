@@ -14,5 +14,11 @@
     <p>Publish Year: <%= chosenBook.publishedInWhichYear %></p>
     <p>Genre: <%= chosenBook.genre %></p>
     <p>Pages: <%= chosenBook.pages %></p>
+    <a href="/books/<%= chosenBook._id %>/edit">Edit</a>
+    <form action="/books/<%= chosenBook._id %>?_method=DELETE" method="POST">
+        <button>
+            Delete
+        </button>
+    </form>
 </body>
 </html>
