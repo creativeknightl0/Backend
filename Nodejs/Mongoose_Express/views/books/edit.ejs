@@ -36,7 +36,27 @@
             <label for="pages">Pages:</label>
             <input type="number" name="pages" id="pages" value="<%= findParticularBook.pages %>" />
         </div>
+        <div>
+            <label for="bookType">Type:</label>
+            <select name="bookType" id="bookType">
+                <% if(findParticularBook.bookType === '') { %>
+                    <option value="<%= findParticularBook.type %>">--- select a book type ---</option>
+                <% } else { %>
+                    <option value="<%= findParticularBook.bookType %>"><%= findParticularBook.bookType %></option>
+                <% } %>
+                <% for(const type of bookTypes) { %>
+                    <% if(type !== findParticularBook.bookType) { %>
+                        <% if(type === '') { %>
+                            <option value="<%= type %>">--- select a book type ---</option>
+                        <% } else { %>
+                            <option value="<%= type %>"><%= type %></option>
+                        <% } %>
+                    <% } %>
+                <% } %>
+            </select>
+        </div>
         <button>Submit</button>
     </form>
+    <a href="/books/<%= findParticularBook._id %>">Go back to book</a>
 </body>
 </html>

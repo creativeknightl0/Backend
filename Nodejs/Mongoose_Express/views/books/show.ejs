@@ -14,11 +14,15 @@
     <p>Publish Year: <%= chosenBook.publishedInWhichYear %></p>
     <p>Genre: <%= chosenBook.genre %></p>
     <p>Pages: <%= chosenBook.pages %></p>
-    <a href="/books/<%= chosenBook._id %>/edit">Edit</a>
-    <form action="/books/<%= chosenBook._id %>?_method=DELETE" method="POST">
-        <button>
-            Delete
-        </button>
-    </form>
+    <p>Type: <a href="/books?book_type=<%= chosenBook.bookType %>"><%= chosenBook.bookType %></a></p>
+    <div style="display: flex; gap: 8px;">
+        <a href="/books/<%= chosenBook._id %>/edit">Edit</a>
+            <form action="/books/<%= chosenBook._id %>?_method=DELETE" method="POST">
+                <button>
+                    Delete
+                </button>
+            </form>
+        <a href="/books">All Books</a>
+    </div>
 </body>
 </html>

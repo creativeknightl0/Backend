@@ -36,6 +36,18 @@
             <label for="pages">Pages:</label>
             <input type="number" name="pages" id="pages">
         </div>
+        <div>
+            <label for="bookType">Type:</label>
+            <select name="bookType" id="bookType">
+                <% for(type of bookTypes) { %>
+                    <% if(type === '') { %>
+                        <option value="<%= type %>">--- select a book type ---</option>
+                    <% } else { %>
+                        <option value="<%= type %>"><%= type %></option>
+                    <% } %>
+                <% } %>
+            </select>
+        </div>
         <button>Submit</button>
     </form>
 </body>
