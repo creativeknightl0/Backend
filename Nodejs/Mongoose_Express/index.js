@@ -28,12 +28,12 @@ app.get('/books', async(req, res) => {
     if(book_type) {
         const allBooks = await Book.find({bookType: book_type});
         console.log(`Based on ${book_type} book type: ${allBooks}`);
-        res.render('books/index', {allBooks});
+        res.render('books/index', {allBooks, book_type});
     }
     else {
         const allBooks = await Book.find();
         console.log(allBooks); // array of all books in objects, overall an array of objects
-        res.render('books/index', {allBooks});       
+        res.render('books/index', {allBooks, book_type: 'All'});       
     }
 })
 
@@ -55,8 +55,12 @@ app.get('/books/:id', async(req, res) => {
 // POST /books - to create new book record in db
 app.post('/books', async(req, res) => {
     const {name, description, author, publisher, publishedInWhichYear, genre, pages, bookType} = req.body;
+    let genreSeparateElements;
+    if(genre) {
+        genreSeparateElements = genre.split(',') && genre.split(', ');
+    }
     // instantiate the model with new data to be inserted - it will remain in mongoose or terminal only
-    const addBook = new Book({name, description, author, publisher, publishedInWhichYear, genre, pages, bookType});
+    const addBook = new Book({name, description, author, publisher, publishedInWhichYear, genre: genreSeparateElements, pages, bookType});
     console.log(addBook);
     // now lets save it to mongodb for permanent storage
     addBook.save();

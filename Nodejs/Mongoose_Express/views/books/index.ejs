@@ -6,14 +6,23 @@
     <title>All Books</title>
 </head>
 <body>
-    <h1>GET /books - show all books</h1>
+    <% if(book_type !== 'All') { %>
+        <h1>GET /books?book_type=<%= book_type %> - show all <%= book_type %> books</h1>
+    <% } else { %>
+        <h1>GET /books - show all books</h1>
+    <% } %>
     <ul>
         <% for(const book of allBooks) { %>
             <li><a href="/books/<%= book._id %>"><%= book.name %></a></li>
         <% } %>
     </ul>
-    <a href="/books/new">
-        New +
-    </a>
+    <div style="display: flex; gap: 8px;">
+        <a href="/books/new">
+            New +
+        </a>
+        <% if(book_type !== 'All') { %>
+            <a href="/books">All Books</a>
+        <% } %>
+    </div>
 </body>
 </html>
