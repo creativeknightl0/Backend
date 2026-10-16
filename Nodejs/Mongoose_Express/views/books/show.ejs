@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= chosenBook.name %></title>
+</head>
+<body>
+    <h1>GET /books/:id - get more info about chosen book</h1>
+    <p>Name: <%= chosenBook.name %></p>
+    <p>Description: <%= chosenBook.description %></p>
+    <p>Author: <%= chosenBook.author %></p>
+    <p>Publisher: <%= chosenBook.publisher %></p>
+    <p>Publish Year: <%= chosenBook.publishedInWhichYear %></p>
+    <p>Genre: <%= chosenBook.genre %></p>
+    <p>Pages: <%= chosenBook.pages %></p>
+    <p>Type: <a href="/books?book_type=<%= chosenBook.bookType %>"><%= chosenBook.bookType %></a></p>
+    <div style="display: flex; gap: 8px;">
+        <a href="/books/<%= chosenBook._id %>/edit">Edit</a>
+            <form action="/books/<%= chosenBook._id %>?_method=DELETE" method="POST">
+                <button>
+                    Delete
+                </button>
+            </form>
+        <a href="/books">All Books</a>
+    </div>
+</body>
+</html>

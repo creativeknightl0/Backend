@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit - <%= findParticularBook.name %></title>
+</head>
+<body>
+    <h1>PUT /books/:id - to update the book record</h1>
+    <form action="/books/<%= findParticularBook._id %>?_method=PUT" method="POST" style="display: flex; flex-direction: column; gap: 16px; align-items: start;">
+        <div>
+            <label for="name">Book Name:</label>
+            <input type="text" name="name" id="name" value="<%= findParticularBook.name %>" />
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea name="description" id="description"><%= findParticularBook.description %></textarea>
+        </div>
+        <div>
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author" value="<%= findParticularBook.author %>" />
+        </div>
+        <div>
+            <label for="publisher">Publisher:</label>
+            <input type="text" name="publisher" id="publisher" value="<%= findParticularBook.publisher %>" />
+        </div>
+        <div>
+            <label for="publishedInWhichYear">Publish Year:</label>
+            <input type="number" name="publishedInWhichYear" id="publishedInWhichYear" value="<%= findParticularBook.publishedInWhichYear %>" />
+        </div>
+        <div>
+            <label for="genre">Genre:</label>
+            <input type="text" name="genre" id="genre" value="<%= findParticularBook.genre %>" />
+        </div>
+        <div>
+            <label for="pages">Pages:</label>
+            <input type="number" name="pages" id="pages" value="<%= findParticularBook.pages %>" />
+        </div>
+        <div>
+            <label for="bookType">Type:</label>
+            <select name="bookType" id="bookType">
+                <% if(findParticularBook.bookType === '') { %>
+                    <option value="<%= findParticularBook.type %>">--- select a book type ---</option>
+                <% } else { %>
+                    <option value="<%= findParticularBook.bookType %>"><%= findParticularBook.bookType %></option>
+                <% } %>
+                <% for(const type of bookTypes) { %>
+                    <% if(type !== findParticularBook.bookType) { %>
+                        <% if(type === '') { %>
+                            <option value="<%= type %>">--- select a book type ---</option>
+                        <% } else { %>
+                            <option value="<%= type %>"><%= type %></option>
+                        <% } %>
+                    <% } %>
+                <% } %>
+            </select>
+        </div>
+        <button>Submit</button>
+    </form>
+    <a href="/books/<%= findParticularBook._id %>">Go back to book</a>
+</body>
+</html>
